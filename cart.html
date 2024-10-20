@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Style for Cart Page */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .cart-container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1428A0;
+        }
+
+        .cart-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-items li img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        .cart-item-details h3 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .cart-item-details p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .remove-item {
+            color: #e74c3c;
+            cursor: pointer;
+        }
+
+        .remove-item:hover {
+            color: #c0392b;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .checkout-button {
+            background-color: #1428A0;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        .checkout-button:hover {
+            background-color: #0e1f80;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cart-container {
+                width: 95%;
+                margin: 30px auto;
+            }
+
+            .cart-items li {
+                flex-wrap: wrap;
+            }
+
+            .cart-items li img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .cart-item-details h3 {
+                font-size: 1rem;
+            }
+
+            .cart-item-price {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Samsung</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html" class="active">Cart</a></li>
+        </ul>
+    </nav>
+
+    <!-- Cart Page Content -->
+    <div class="cart-container">
+        <h1>Your Shopping Cart</h1>
+
+        <ul class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </ul>
+
+        <p class="cart-total" id="cart-total">Total: $0</p>
+        <button class="checkout-button" id="checkout-button">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        // Load Cart from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartDisplay() {
+            const cartItemsList = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            cartItemsList.innerHTML = '';  // Clear previous cart items
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemElement = document.createElement('li');
+                    itemElement.innerHTML = `
+                        <img src="images/${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p>Quantity: ${item.quantity}</p>
+                        </div>
+                        <div class="cart-item-price">$${item.price * item.quantity}</div>
+                        <span class="remove-item" data-id="${item.id}">&times;</span>
+                    `;
+                    cartItemsList.appendChild(itemElement);
+                    total += item.price * item.quantity;
+                });
+
+                // Remove item event listener
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const itemId = e.target.getAttribute('data-id');
+                        removeItemFromCart(itemId);
+                    });
+                });
+            }
+
+            cartTotal.textContent = `Total: $${total}`;
+        }
+
+        // Remove item from cart
+        function removeItemFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        // Initialize Cart Display on Page Load
+        document.addEventListener('DOMContentLoaded', updateCartDisplay);
+
+        // Checkout Button
+        document.getElementById('checkout-button').addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add items to proceed.");
+            } else {
+                alert("Proceeding to checkout...");
+                // You can redirect to a checkout page or handle checkout here
+            }
+        });
+    </script>
+</body>
+</html>

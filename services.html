@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Samsung</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- External CSS Styles -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .navbar {
+            background-color: #1428A0;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .services-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .services-section h1, .services-section h2 {
+            color: #1428A0;
+        }
+        .services-section p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .services-section ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .services-section .contact-form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1.5rem;
+        }
+        .services-section .contact-form input, 
+        .services-section .contact-form textarea {
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .services-section .contact-form button {
+            padding: 0.75rem;
+            background-color: #1428A0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        /* Error message styling */
+        .error-message {
+            color: #FF3333; /* Red color for the error message */
+            font-size: 0.9rem;
+            position: relative;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Samsung</div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Services Section -->
+    <div class="services-section">
+        <h1>Our Services</h1>
+        <p>At Samsung, we are committed to providing you with exceptional service and support for all our products. Whether you have a query or need assistance with your Samsung appliances, our team is here to help!</p>
+
+        <h2>Doubt Solving Mentors</h2>
+        <p>Our dedicated mentors are available to help you resolve any issues you might face with your Samsung products. You can reach out to them for:</p>
+        <ul>
+            <li>Product troubleshooting</li>
+            <li>Technical support</li>
+            <li>Usage tips and tricks</li>
+        </ul>
+
+        <h2>Suggestions and Feedback</h2>
+        <p>Your feedback is invaluable to us. Please share your suggestions or experiences with our products so we can serve you better:</p>
+        <form class="contact-form" id="feedbackForm">
+            <input type="text" name="name" id="name" placeholder="Your Name" required>
+            <div class="error-message" id="name-error">Please enter your name.</div> <!-- Error below input -->
+            <input type="email" name="email" id="email" placeholder="Your Email" required>
+            <div class="error-message" id="email-error">Please enter a valid email address.</div> <!-- Error below input -->
+            <textarea name="message" id="message" rows="4" placeholder="Your Suggestions or Feedback" required></textarea>
+            <div class="error-message" id="message-error">Please enter your message.</div> <!-- Error below input -->
+            <button type="submit">Submit</button>
+        </form>
+
+        <h2>Samsung Appliance Services</h2>
+        <p>We offer a range of services related to Samsung appliances, including:</p>
+        <ul>
+            <li>Installation services for home appliances</li>
+            <li>Repair and maintenance services</li>
+            <li>Software updates and troubleshooting for smart appliances</li>
+            <li>Product warranty support</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best services to our customers. We strive to deliver exceptional customer service and high-quality products.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: gadhvipushpraj7@gmail.com</p>
+                <p>Phone: +91 8200758458</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Samsung. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Validation -->
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Reset error messages
+            document.getElementById('name-error').style.display = 'none';
+            document.getElementById('email-error').style.display = 'none';
+            document.getElementById('message-error').style.display = 'none';
+
+            let isValid = true;
+
+            // Get form values
+            const nameInput = document.getElementById('name').value.trim();
+            const emailInput = document.getElementById('email').value.trim();
+            const messageInput = document.getElementById('message').value.trim();
+
+            // Name validation
+            if (nameInput === '') {
+                document.getElementById('name-error').style.display = 'block';
+                isValid = false;
+            }
+
+            // Email validation (simple regex)
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput)) {
+                document.getElementById('email-error').style.display = 'block';
+                isValid = false;
+            }
+
+            // Message validation
+            if (messageInput === '') {
+                document.getElementById('message-error').style.display = 'block';
+                isValid = false;
+            }
+
+            // If valid, proceed with form submission (for demo, we just log it)
+            if (isValid) {
+                console.log("Form submitted successfully!");
+                // Optionally, you can reset the form
+                // document.getElementById('feedbackForm').reset();
+            }
+        });
+    </script>
+</body>
+</html>

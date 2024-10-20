@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Product Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .navbar {
+            background-color: #1428A0;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .product-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .product-image-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-image-gallery img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .thumbnail-container img {
+            width: 80px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+        .thumbnail-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .product-details {
+            padding: 1rem;
+        }
+        .product-details h1 {
+            color: #1428A0;
+        }
+        .product-details p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1428A0;
+            margin-bottom: 1rem;
+        }
+        .add-to-cart {
+            background-color: #1428A0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .add-to-cart:hover {
+            background-color: #0e1f80;
+        }
+
+        .product-specifications {
+            margin-top: 2rem;
+            border-top: 1px solid #ccc;
+            padding-top: 1rem;
+        }
+        .product-specifications h2 {
+            color: #1428A0;
+        }
+        .specification-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .specification-list li {
+            margin: 0.5rem 0;
+        }
+
+        .reviews {
+            margin-top: 2rem;
+            border-top: 1px solid #ccc;
+            padding-top: 1rem;
+        }
+        .reviews h2 {
+            color: #1428A0;
+        }
+        .review-item {
+            border-bottom: 1px solid #ddd;
+            padding: 1rem 0;
+        }
+        .review-item:last-child {
+            border-bottom: none;
+        }
+        .review-rating {
+            color: #ffcc00;
+        }
+        .review-comment {
+            margin-top: 0.5rem;
+        }
+
+        .footer {
+            background-color: #1428A0;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Samsung</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#cart" class="cart-icon"><i class="ri-shopping-cart-2-fill"></i></a></li>
+            <li><a href="#login" class="login-icon"><i class="ri-user-6-line"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="product-container">
+        <div class="product-image-gallery">
+            <img src="s24new.jpg" alt="Samsung S24 Ultra" id="main-product-image">
+            <div class="thumbnail-container">
+                <img src="s24new.jpg" alt="Samsung S24 Ultra" onclick="changeImage('images/s24new.jpg', 'Samsung S24 Ultra', '$1063', ['Display: 6.8 inches Dynamic AMOLED', 'Processor: Snapdragon 8 Gen 2', 'RAM: 12 GB', 'Storage: 256 GB / 512 GB', 'Camera: 200 MP + 12 MP + 10 MP', 'Battery: 5000 mAh'])">
+                <img src="zfold6new.jpg" alt="Samsung ZFold5" onclick="changeImage('images/zfold6new.jpg', 'Samsung ZFold5', '$1399', ['Display: 7.6 inches AMOLED', 'Processor: Snapdragon 8+ Gen 1', 'RAM: 12 GB', 'Storage: 256 GB / 512 GB', 'Camera: 50 MP + 12 MP + 10 MP', 'Battery: 4400 mAh'])">
+                <img src="a35.webp" alt="Samsung A35" onclick="changeImage('images/a35.webp', 'Samsung A35', '$298', ['Display: 6.5 inches Super AMOLED', 'Processor: Exynos 1280', 'RAM: 8 GB', 'Storage: 128 GB', 'Camera: 48 MP + 5 MP + 2 MP', 'Battery: 5000 mAh'])">
+                <img src="buds.jpg" alt="Samsung Galaxy Buds" onclick="changeImage('images/buds.jpg', 'Samsung Galaxy Buds', '$209', ['Type: Wireless', 'Battery: 5 hours', 'Compatibility: Android & iOS', 'Water Resistance: IPX2'])">
+            </div>
+        </div>
+
+        <div class="product-details">
+            <h1 id="product-name">Samsung S24 Ultra</h1>
+            <p class="product-price" id="product-price">$1063</p>
+            <p>
+                The Samsung S24 Ultra is a revolutionary smartphone that redefines mobile technology. 
+                With its advanced camera system, powerful processor, and stunning display, the S24 Ultra is designed to enhance your daily life.
+            </p>
+            <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="product-specifications">
+            <h2>Specifications</h2>
+            <ul class="specification-list" id="specification-list">
+                <li>Display: 6.8 inches Dynamic AMOLED</li>
+                <li>Processor: Snapdragon 8 Gen 2</li>
+                <li>RAM: 12 GB</li>
+                <li>Storage: 256 GB / 512 GB</li>
+                <li>Camera: 200 MP + 12 MP + 10 MP</li>
+                <li>Battery: 5000 mAh</li>
+            </ul>
+        </div>
+
+        <div class="reviews">
+            <h2>Customer Reviews</h2>
+            <div class="review-item">
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                <div class="review-comment">Amazing phone! The camera quality is out of this world.</div>
+            </div>
+            <div class="review-item">
+                <div class="review-rating">⭐⭐⭐⭐</div>
+                <div class="review-comment">Great performance, but the battery life could be better.</div>
+            </div>
+            <div class="review-item">
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                <div class="review-comment">Best phone I have ever owned!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Samsung. All rights reserved.</p>
+    </div>
+
+    <script>
+        function changeImage(imageSrc, productName, productPrice, specifications) {
+            document.getElementById('main-product-image').src = imageSrc;
+            document.getElementById('product-name').textContent = productName;
+            document.getElementById('product-price').textContent = productPrice;
+
+            const specificationList = document.getElementById('specification-list');
+            specificationList.innerHTML = ''; // Clear current specifications
+            specifications.forEach(spec => {
+                const li = document.createElement('li');
+                li.textContent = spec;
+                specificationList.appendChild(li);
+            });
+        }
+
+        function addToCart() {
+            alert("Added to Cart!");
+        }
+    </script>
+</body>
+</html>
